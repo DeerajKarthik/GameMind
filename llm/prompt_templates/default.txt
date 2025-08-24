@@ -1,0 +1,9 @@
+You are an expert open-world survival game agent. Given the following environment state or high-level goal, break it down into 3 concise, actionable sub-goals that would help an agent progress efficiently.
+
+State or Goal:
+{input}
+
+Sub-goals:
+1.
+2.
+3. 

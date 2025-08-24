@@ -1,0 +1,99 @@
+# GameMind Default Configuration
+
+# Environment Configuration
+env:
+  name: "crafter"
+  max_steps: 300
+  render_mode: null
+  seed: 42
+  reward_shaping: true
+
+# Agent Configuration
+agent:
+  algorithm: "PPO"
+  learning_rate: 0.0003
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+  
+  policy_kwargs:
+    net_arch:
+      pi: [256, 256]
+      vf: [256, 256]
+    activation_fn: "relu"
+    ortho_init: true
+
+# Planning Configuration
+planning:
+  enabled: true
+  mcts_simulations: 100
+  max_depth: 10
+  exploration_constant: 1.0
+  
+  subgoal_generation:
+    enabled: true
+    max_subgoals: 5
+    subgoal_reward_bonus: 5.0
+
+# LLM Configuration
+llm:
+  enabled: true
+  model_name: "llama-2-7b-chat"
+  max_tokens: 128
+  temperature: 0.7
+  
+  prompts:
+    task_analysis: "Analyze the current task: {task_name}. What are the key steps needed?"
+    subgoal_generation: "Generate 3-5 specific subgoals for: {task_name}"
+    progress_evaluation: "Evaluate progress on: {task_name}. Current state: {current_state}"
+
+# Logging Configuration
+logging:
+  log_dir: "logs/"
+  tensorboard: true
+  wandb: false
+  log_level: "INFO"
+  
+  metrics:
+    - "episode_reward"
+    - "episode_length"
+    - "subgoal_completion"
+    - "curriculum_progress"
+
+# Training Configuration
+training:
+  max_episodes: 100
+  checkpoint_interval: 25
+  eval_frequency: 10
+  
+  curriculum:
+    stages:
+      - "survive 50 steps"
+      - "collect wood"
+      - "make wood_pickaxe"
+      - "place furnace"
+      - "defeat zombie"
+      - "survive 200 steps"
+    
+    threshold: 5.0
+    episodes_per_stage: 50
+
+# Task Rewards
+task_rewards:
+  collect_wood: 3.0
+  collect_stone: 4.0
+  collect_coal: 5.0
+  collect_iron: 6.0
+  make_wood_pickaxe: 8.0
+  make_stone_pickaxe: 10.0
+  make_iron_pickaxe: 12.0
+  place_furnace: 6.0
+  place_table: 5.0
+  defeat_zombie: 4.0
+  defeat_skeleton: 5.0 
