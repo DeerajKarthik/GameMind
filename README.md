@@ -51,7 +51,7 @@ python scripts/generate_subgoal.py --state 'survive 100 steps' --config configs/
 ## Configuration
 All settings (environment, agent, planning, LLM, logging) are managed via YAML files in `configs/`.
 
-## Example Results (Placeholder)
+## Results
 | Episode | Total Reward | Subgoals Completed | Achievements         | Length |
 |---------|-------------|-------------------|---------------------|--------|
 | 1       | 12.5        | 3                 | ['collect_wood']    | 1000   |
