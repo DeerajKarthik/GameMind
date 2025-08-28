@@ -14,7 +14,7 @@ GameMind is a modular, open-source AI agent designed to play open-world survival
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/gamemind.git
+git clone https://github.com/DeerajKarthik/GameMind.git
 cd gamemind/gamemind
 ```
 
